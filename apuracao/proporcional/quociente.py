@@ -1,5 +1,6 @@
 import math
 
+
 # calcula o quociente eleitoral a partir do numero de votos validos e do numero de vagas
 def calcular_quociente_eleitoral(votos_validos: int, vagas: int) -> int:
     if vagas <= 0:

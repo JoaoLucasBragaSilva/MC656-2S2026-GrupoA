@@ -1,7 +1,9 @@
 import pytest
-from apuracao.proporcional.quociente import calcular_quociente_eleitoral
-from apuracao.proporcional.quociente import calcular_quociente_partidario
 
+from apuracao.proporcional.quociente import (
+    calcular_quociente_eleitoral,
+    calcular_quociente_partidario,
+)
 
 # Testes do quociente eleitoral:
 
