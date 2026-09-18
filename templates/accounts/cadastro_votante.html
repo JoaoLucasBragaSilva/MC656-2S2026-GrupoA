@@ -1,0 +1,134 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% block title %}Cadastro de Votante - Nome_Projeto{% endblock %}
+
+{% block content %}
+<div class="auth-wrapper">
+    <aside class="auth-brand">
+        <div class="brand-header">
+            <div class="brand-logo">
+                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 2L4 9v11c0 9.4 6.8 18 16 20 9.2-2 16-10.6 16-20V9L20 2z" fill="url(#grad1)"/>
+                    <path d="M14 20l4 4 8-8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs>
+                        <linearGradient id="grad1" x1="0" y1="0" x2="40" y2="40">
+                            <stop offset="0%" stop-color="#00A868"/>
+                            <stop offset="100%" stop-color="#007A4C"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <span class="brand-name">Nome_Projeto</span>
+        </div>
+
+        <div class="brand-content">
+            <h1>Cadastro de<br><span>Votante</span>.</h1>
+            <p>Preencha seus dados para participar das eleições digitais com segurança.</p>
+            
+            <ul class="brand-features">
+                <li><span class="feature-icon">✓</span><span>Dados protegidos por criptografia</span></li>
+                <li><span class="feature-icon">✓</span><span>Voto único por CPF</span></li>
+                <li><span class="feature-icon">✓</span><span>Confirmação por e-mail</span></li>
+            </ul>
+        </div>
+    </aside>
+
+    <main class="auth-main">
+        <div class="auth-container form-container">
+            <a href="{% url 'accounts:cadastro' %}" class="back-link">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Voltar
+            </a>
+
+            <div class="auth-header">
+                <span class="badge badge-voter">Votante</span>
+                <h2>Crie sua conta</h2>
+                <p>Informe seus dados pessoais para começar</p>
+            </div>
+
+            <form class="auth-form" id="form-votante" novalidate>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nome">Nome completo</label>
+                        <input type="text" id="nome" name="nome" placeholder="João da Silva" required>
+                        <span class="error-msg" data-error-for="nome"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cpf">CPF</label>
+                        <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" maxlength="14" inputmode="numeric" required>
+                        <span class="error-msg" data-error-for="cpf"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="nascimento">Data de nascimento</label>
+                        <input type="date" id="nascimento" name="nascimento" required>
+                        <span class="error-msg" data-error-for="nascimento"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+                        <span class="error-msg" data-error-for="email"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="senha">Senha</label>
+                        <div class="input-password">
+                            <input type="password" id="senha" name="senha" placeholder="Mínimo 8 caracteres" required>
+                            <button type="button" class="toggle-password" data-target="senha" aria-label="Mostrar senha">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/></svg>
+                            </button>
+                        </div>
+                        <div class="password-strength" id="strength-senha">
+                            <div class="strength-bar"></div>
+                            <div class="strength-bar"></div>
+                            <div class="strength-bar"></div>
+                            <div class="strength-bar"></div>
+                        </div>
+                        <span class="error-msg" data-error-for="senha"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmar_senha">Confirmar senha</label>
+                        <div class="input-password">
+                            <input type="password" id="confirmar_senha" name="confirmar_senha" placeholder="Repita a senha" required>
+                            <button type="button" class="toggle-password" data-target="confirmar_senha" aria-label="Mostrar senha">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/></svg>
+                            </button>
+                        </div>
+                        <span class="error-msg" data-error-for="confirmar_senha"></span>
+                    </div>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="termos" name="termos" required>
+                        <span class="checkbox-custom"></span>
+                        <span>Concordo com os <a href="#">Termos de Uso</a> e <a href="#">Política de Privacidade</a></span>
+                    </label>
+                    <span class="error-msg" data-error-for="termos"></span>
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    <span>Criar conta</span>
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p>Já possui uma conta? <a href="#">Faça login</a></p>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/cadastro_votante.js' %}"></script>
+{% endblock %}
