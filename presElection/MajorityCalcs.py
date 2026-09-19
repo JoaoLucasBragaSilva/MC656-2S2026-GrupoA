@@ -2,7 +2,7 @@ def calc_abs_majority(vote_dict):
     """
     Determines the result of an absolute majority vote based on a dictionary.\n
     If a value is greater than floor(sum(values)), returns its key.\n
-    If not, returns a tuple with the two keys of greatest value.
+    If not, returns a tuple with all keys of greatest and 2nd greatest values.
     """
 
     vote_dict = validate_and_trim_dictionary(vote_dict)
@@ -14,7 +14,14 @@ def calc_abs_majority(vote_dict):
     if vote_dict[most_voted_key] > sum_of_votes//2:
         return most_voted_key
     else:
-        return most_voted_key, sorted_dict[1][0]
+        second_turn_keys = [most_voted_key, sorted_dict[1][0]]
+        for i in range(2, len(sorted_dict)):
+            if sorted_dict[i][1] == sorted_dict[1][1]:
+                second_turn_keys.append(sorted_dict[i][0])
+            else:
+                break
+
+        return tuple(sorted(second_turn_keys))
     
 def calc_simple_majority(vote_dict):
     """
@@ -67,3 +74,6 @@ def trim_dictionary(vote_dict):
         for k, v in vote_dict.items()
         if k not in (0, "B")
     }
+
+d={"B":0,0:1,1:4,2:5,3:4}
+print(calc_abs_majority(d))
