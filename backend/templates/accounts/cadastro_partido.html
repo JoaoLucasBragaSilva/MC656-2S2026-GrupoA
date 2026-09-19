@@ -1,0 +1,163 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% block title %}Cadastro de Partido - Nome_Projeto{% endblock %}
+
+{% block content %}
+<div class="auth-wrapper">
+    <aside class="auth-brand party-theme">
+        <div class="brand-header">
+            <div class="brand-logo">
+                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 2L4 9v11c0 9.4 6.8 18 16 20 9.2-2 16-10.6 16-20V9L20 2z" fill="url(#grad2)"/>
+                    <path d="M14 20l4 4 8-8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs>
+                        <linearGradient id="grad2" x1="0" y1="0" x2="40" y2="40">
+                            <stop offset="0%" stop-color="#1E3A8A"/>
+                            <stop offset="100%" stop-color="#0F1F4F"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <span class="brand-name">Nome_Projeto</span>
+        </div>
+
+        <div class="brand-content">
+            <h1>Registro de<br><span>Partido</span>.</h1>
+            <p>Cadastre seu partido político e candidate-se às eleições da plataforma.</p>
+            
+            <ul class="brand-features">
+                <li><span class="feature-icon">✓</span><span>Validação de CNPJ</span></li>
+                <li><span class="feature-icon">✓</span><span>Gestão de candidatos</span></li>
+                <li><span class="feature-icon">✓</span><span>Painel de resultados</span></li>
+            </ul>
+        </div>
+
+        <div class="brand-footer">
+            <span>🇧🇷 Feito no Brasil</span>
+        </div>
+    </aside>
+
+    <main class="auth-main">
+        <div class="auth-container form-container">
+            <a href="{% url 'accounts:cadastro' %}" class="back-link">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Voltar
+            </a>
+
+            <div class="auth-header">
+                <span class="badge badge-party">Partido</span>
+                <h2>Registre seu partido</h2>
+                <p>Informe os dados oficiais da agremiação</p>
+            </div>
+
+            <form class="auth-form" id="form-partido" novalidate>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nome_partido">Nome do partido</label>
+                        <input type="text" id="nome_partido" name="nome_partido" placeholder="Ex: Partido Democrático Brasileiro" required>
+                        <span class="error-msg" data-error-for="nome_partido"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="sigla">Sigla</label>
+                        <input type="text" id="sigla" name="sigla" placeholder="Ex: PDB" maxlength="10" required style="text-transform: uppercase;">
+                        <span class="error-msg" data-error-for="sigla"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="cnpj">CNPJ</label>
+                        <input type="text" id="cnpj" name="cnpj" placeholder="00.000.000/0000-00" maxlength="18" inputmode="numeric" required>
+                        <span class="error-msg" data-error-for="cnpj"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email_partido">E-mail institucional</label>
+                        <input type="email" id="email_partido" name="email_partido" placeholder="contato@partido.org.br" required>
+                        <span class="error-msg" data-error-for="email_partido"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone">Telefone</label>
+                        <input type="text" id="telefone" name="telefone" placeholder="(00) 0000-0000" maxlength="15" inputmode="numeric" required>
+                        <span class="error-msg" data-error-for="telefone"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="presidente">Nome do presidente</label>
+                        <input type="text" id="presidente" name="presidente" placeholder="Nome completo do presidente" required>
+                        <span class="error-msg" data-error-for="presidente"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="espectro">Espectro político</label>
+                        <select id="espectro" name="espectro" required>
+                            <option value="">Selecione...</option>
+                            <option value="esquerda">Esquerda</option>
+                            <option value="centro-esquerda">Centro-esquerda</option>
+                            <option value="centro">Centro</option>
+                            <option value="centro-direita">Centro-direita</option>
+                            <option value="direita">Direita</option>
+                        </select>
+                        <span class="error-msg" data-error-for="espectro"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="senha_partido">Senha de acesso</label>
+                        <div class="input-password">
+                            <input type="password" id="senha_partido" name="senha_partido" placeholder="Mínimo 8 caracteres" required>
+                            <button type="button" class="toggle-password" data-target="senha_partido" aria-label="Mostrar senha">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/></svg>
+                            </button>
+                        </div>
+                        <div class="password-strength" id="strength-senha_partido">
+                            <div class="strength-bar"></div>
+                            <div class="strength-bar"></div>
+                            <div class="strength-bar"></div>
+                            <div class="strength-bar"></div>
+                        </div>
+                        <span class="error-msg" data-error-for="senha_partido"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmar_senha_partido">Confirmar senha</label>
+                        <div class="input-password">
+                            <input type="password" id="confirmar_senha_partido" name="confirmar_senha_partido" placeholder="Repita a senha" required>
+                            <button type="button" class="toggle-password" data-target="confirmar_senha_partido" aria-label="Mostrar senha">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/></svg>
+                            </button>
+                        </div>
+                        <span class="error-msg" data-error-for="confirmar_senha_partido"></span>
+                    </div>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="termos_partido" name="termos_partido" required>
+                        <span class="checkbox-custom"></span>
+                        <span>Declaro que as informações são verídicas e concordo com os <a href="#">Termos</a></span>
+                    </label>
+                    <span class="error-msg" data-error-for="termos_partido"></span>
+                </div>
+
+                <button type="submit" class="btn-primary btn-party">
+                    <span>Registrar partido</span>
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p>Já possui uma conta? <a href="#">Faça login</a></p>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/cadastro_partido.js' %}"></script>
+{% endblock %}
