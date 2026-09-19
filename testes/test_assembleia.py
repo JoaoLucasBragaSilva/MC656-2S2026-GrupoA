@@ -2,13 +2,14 @@ import pytest
 
 from apuracao.maioria_simples import (
     apurar_votacao,
+    calcular_maioria_qualificada_ponderada,
     calcular_maioria_simples_assembleia_condominio,
     calcular_maioria_simples_ponderada,
-    calcular_maioria_qualificada_ponderada,
     calcular_proporcao_ideal_assembleia_condominio,
     calcular_votos_ponderados,
     verificar_quorum,
 )
+
 
 # def calcular_maioria_simples_assembleia_condominio(valores):
 class TestCalcularMaioriaSimplesAssembleiaCondominio:

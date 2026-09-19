@@ -1,5 +1,7 @@
-import math             #Assembleia condominio
+import math
+
 import numpy as np
+
 
 def calcular_maioria_simples_assembleia_condominio(valores):
     total_votos = sum(valores)
