@@ -1,0 +1,4 @@
+Django==6.0.3
+django-environ==0.11.2
+python-decouple==3.8
+Pillow==10.3.0
