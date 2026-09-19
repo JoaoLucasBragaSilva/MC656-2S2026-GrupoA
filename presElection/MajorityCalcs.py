@@ -31,6 +31,8 @@ def calc_simple_majority(vote_dict):
     """
 
     vote_dict = validate_and_trim_dictionary(vote_dict)
+    if len(vote_dict) > 2:
+        raise TypeError("Dictionary must contain exactly 2 non-required keys")
 
     sorted_dict = sorted(vote_dict.items(), key=lambda item: item[1], reverse=True)
     most_voted_key = sorted_dict[0][0]
@@ -64,7 +66,7 @@ def validate_and_trim_dictionary(vote_dict):
 
     # Condition 2
     if len(trimmed) < 2:
-        raise ValueError("Dictionary must contain at least 2 non-required keys")
+        raise TypeError("Dictionary must contain at least 2 non-required keys")
 
     return trimmed
 
