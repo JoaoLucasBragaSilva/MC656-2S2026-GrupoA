@@ -1,0 +1,15 @@
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.env/
+.DS_Store
+.vscode/
+.idea/
+htmlcov/
+venv/
+*.pyc
+*$py.class
+.coverage
+*.sqlite3
+*.env
+*/db.sqlite3
