@@ -17,8 +17,9 @@ def test_home_page_status_and_template(client, home_url):
 
 def test_home_page_context_site_name(client, home_url):
     response = client.get(home_url)
-    assert 'site_name' in response.context
-    assert response.context['site_name'] in response.content.decode()
+    site_name = response.context.get('site_name')
+    assert site_name is not None
+    assert site_name in response.content.decode()
 
 
 def test_home_page_only_allows_get(client, home_url):
@@ -47,11 +48,6 @@ def test_home_page_accessible_without_authentication(client, home_url):
     response = client.get(home_url)
     assert response.status_code == 200
     assert '_auth_user_id' not in client.session
-
-
-def test_home_responde_200(client):
-    response = client.get('/')
-    assert response.status_code == 200
 
 def test_url_inexistente_retorna_404(client):
     response = client.get('/rota-que-nao-existe/')
