@@ -1,4 +1,3 @@
-import math
 
 
 # calcula o quociente eleitoral a partir do numero de votos validos e do numero de vagas
