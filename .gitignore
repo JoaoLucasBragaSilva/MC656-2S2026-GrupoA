@@ -1,4 +1,13 @@
-__pycache__
-.pytest_cache
-.ruff_cache
-start_server
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.env/
+.DS_Store
+.vscode/
+.idea/
+htmlcov/
+*.pyc
+*$py.class
+.coverage
+*.sqlite3
+*.env

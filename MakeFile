@@ -1,7 +1,0 @@
-.PHONY: help setup backend mobile clean clean-backend clean-mobile test
-
-help:
-
-start_server:
-	@chmod +x start_server.sh
-	@./start_server.sh
