@@ -8,13 +8,12 @@ def calcular_quociente_eleitoral(votos_validos: int, vagas: int) -> int:
     if votos_validos < 0:
         raise ValueError("Numero de votos validos nao pode ser negativo")
 
-    quociente = votos_validos / vagas
-    fracao = quociente - int(quociente)
+    quociente_inteiro, resto = divmod(votos_validos, vagas)
 
-    if fracao > 0.5:
-        return math.ceil(quociente)
+    if resto * 2 > vagas:
+        return quociente_inteiro + 1
     else:
-        return math.floor(quociente)
+        return quociente_inteiro
 
 # calcula o quociente partidario a partir do numero de votos de um partido e do quociente eleitoral
 def calcular_quociente_partidario(votos_partido: int, quociente_eleitoral: int) -> int:
