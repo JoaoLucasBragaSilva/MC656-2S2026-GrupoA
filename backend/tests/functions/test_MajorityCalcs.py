@@ -1,6 +1,6 @@
 import pytest
 
-from presElection.MajorityCalcs import calc_abs_majority, calc_simple_majority
+from backend.functions.presElection.MajorityCalcs import calc_abs_majority, calc_simple_majority
 
 
 # Absolute majority tests

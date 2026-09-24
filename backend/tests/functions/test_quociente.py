@@ -1,6 +1,6 @@
 import pytest
 
-from apuracao.proporcional.quociente import (
+from backend.functions.apuracao.proporcional.quociente import (
     calcular_quociente_eleitoral,
     calcular_quociente_partidario,
 )

@@ -1,6 +1,6 @@
 import pytest
 
-from presElection.MajorityCalcs import trim_dictionary, validate_and_trim_dictionary
+from backend.functions.presElection.MajorityCalcs import trim_dictionary, validate_and_trim_dictionary
 
 
 # Dictionary validation tests

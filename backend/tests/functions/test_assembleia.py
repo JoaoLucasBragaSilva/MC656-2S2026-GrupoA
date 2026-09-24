@@ -1,6 +1,6 @@
 import pytest
 
-from apuracao.maioria_simples import (
+from backend.functions.apuracao.maioria_simples import (
     apurar_votacao,
     calcular_maioria_qualificada_ponderada,
     calcular_maioria_simples_assembleia_condominio,
