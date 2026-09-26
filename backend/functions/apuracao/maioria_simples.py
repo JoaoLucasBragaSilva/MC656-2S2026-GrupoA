@@ -24,7 +24,7 @@ def calcular_votos_ponderados(areas_unidades, votos_unidades):  # Calcula os vot
     area_total = sum(areas_unidades)    # Calcula a área total das unidades
     votos_ponderados = []               # Um array para armazenar os votos ponderados de cada unidade
 
-    for area, voto in zip(areas_unidades, votos_unidades):
+    for area, voto in zip(areas_unidades, votos_unidades, strict=True):
         fracao = calcular_proporcao_ideal_assembleia_condominio(area, area_total)
         peso_voto = fracao * np.abs(voto)       # Multiplica pela presença do voto (0 ou 1)
         votos_ponderados.append(peso_voto)
@@ -84,7 +84,7 @@ def apurar_votacao(areas_unidades, votos_unidades, tipo_maioria="simples", metod
     votos_contra = 0
     votos_abstencao = 0
 
-    for peso, voto in zip(pesos, votos_unidades):
+    for peso, voto in zip(pesos, votos_unidades, strict=True):
         if voto == 1:
             votos_favor += peso
         elif voto == -1:

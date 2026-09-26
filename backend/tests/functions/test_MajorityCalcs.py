@@ -1,6 +1,9 @@
 import pytest
 
-from backend.functions.presElection.MajorityCalcs import calc_abs_majority, calc_simple_majority
+from functions.presElection.MajorityCalcs import (
+    calc_abs_majority,
+    calc_simple_majority,
+)
 
 
 # Absolute majority tests
@@ -9,7 +12,7 @@ def test_single_winner():
 
 def test_two_winners():
     assert calc_abs_majority({"B": 40, 0: 40, 83: 13, 57: 5, 26: 5, 39: 60, 1: 0, 99: 80}) == (39, 99)
-    
+
 def test_multiple_winners():
     assert calc_abs_majority({"B": 40, 0: 40, 83: 13, 57: 60, 26: 5, 39: 60, 1: 60, 99: 80}) == (1, 39, 57, 99)
 
@@ -32,7 +35,7 @@ def test_simple_majority():
     assert calc_simple_majority({"B": 100, 0: 100, 1: 51, 99: 50}) == 1
     assert calc_simple_majority({"B": 100, 0: 100, 1: 50, 99: 50}) == (1, 99)
     assert calc_simple_majority({"B": 100, 0: 100, 1: 50, 99: 51}) == 99
-    
+
 # Test too many keys
     with pytest.raises(TypeError, match="Dictionary must contain exactly 2 non-required keys"):
         calc_simple_majority({"B": 100, 0: 100, 1: 50, 2: 45, 99: 51})

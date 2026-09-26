@@ -22,7 +22,7 @@ def calc_abs_majority(vote_dict):
                 break
 
         return tuple(sorted(second_turn_keys))
-    
+
 def calc_simple_majority(vote_dict):
     """
     Determines the result of a simple majority vote based on a dictionary.\n

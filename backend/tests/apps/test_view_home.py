@@ -6,7 +6,7 @@ pytestmark = pytest.mark.django_db
 
 @pytest.fixture
 def home_url():
-    return reverse('home')
+    return reverse('accounts:home')
 
 
 def test_home_page_status_and_template(client, home_url):
@@ -41,7 +41,7 @@ def test_home_page_login_link_present(client, home_url):
     response = client.get(home_url)
     content = response.content.decode()
     assert 'Fazer login' in content
-    assert 'href="#"' in content 
+    assert 'href="#"' in content
 
 
 def test_home_page_accessible_without_authentication(client, home_url):
