@@ -9,7 +9,7 @@ help:
 
 start-backend:
 	@python -m venv venv
-	@venv/bin/pip install -r backend/requirements.txt
+	@venv/bin/pip install -r requirements.txt
 	@cd backend && ../venv/bin/python manage.py migrate
 	@echo "Venv criada.\nPara ativar no seu terminal, use: source venv/bin/activate\nPara encerrar, use: deactivate"
 
