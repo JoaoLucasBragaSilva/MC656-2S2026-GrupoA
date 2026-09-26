@@ -23,7 +23,14 @@ start-mobile:
 
 clean:
 	@echo "Limpando artefatos do backend..."
-	@find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true
-	@find . -type d -name .pytest_cache -exec rm -rf {} + 2>/dev/null || true
-	@echo "Limpando artefatos do mobile..."
-	@rm -rf mobile/node_modules mobile/www mobile/.angular 2>/dev/null || true
+	@find . -type d -name "venv" -prune | xargs rm -rf
+	@find . -type d -name "__pycache__" -prune | xargs rm -rf
+	@find . -type d -name ".pytest_cache" -prune | xargs rm -rf
+	@find . -type d -name ".ruff_cache" -prune | xargs rm -rf
+	@find . -type f -name "*.pyc" -delete 2>/dev/null || true
+	@find . -type f -name "db.sqlite3" -delete 2>/dev/null || true
+	@find . -type f -name ".coverage" -delete 2>/dev/null || true
+#	@echo "Limpando artefatos do mobile..."
+#	@find . -type d -name "mobile/node_modules" -prune | xargs rm -rf
+#	@find . -type d -name "mobile/www" -prune | xargs rm -rf
+#	@find . -type d -name "mobile/.angular" -prune | xargs rm -rf
