@@ -1,6 +1,6 @@
 import pytest
 
-from apuracao.maioria_simples import (
+from functions.apuracao.maioria_simples import (
     apurar_votacao,
     calcular_maioria_qualificada_ponderada,
     calcular_maioria_simples_assembleia_condominio,
@@ -159,7 +159,7 @@ class TestApurarVotacao:
 
 # def verificar_quorum(areas_unidades, area_total, convocacao="primeira", quorum_minimo_primeira=2/3, quorum_minimo_segunda=0):
 class TestVerificarQuorum:
-    def test_primeira_convocacao_quorum_atingido(self):         # presentes: 700 de 1000 (70%) >= 2/3 (~66,67%) 
+    def test_primeira_convocacao_quorum_atingido(self):         # presentes: 700 de 1000 (70%) >= 2/3 (~66,67%)
         resultado = verificar_quorum([300, 400], 1000, convocacao="primeira")
         assert resultado["quorum_atingido"] is True
         assert resultado["fracao_presente"] == pytest.approx(0.7)

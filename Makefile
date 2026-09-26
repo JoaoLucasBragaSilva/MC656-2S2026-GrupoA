@@ -1,42 +1,36 @@
-.PHONY: help setup all start_server start_tests backend mobile clean clean-backend clean-mobile
+.PHONY: help start-backend start-mobile test-backend clean
 
 help:
-	@echo "Nome_Projeto — comandos disponíveis:"
-	@echo "  make setup          Prepara os scripts"
-	@echo "  make all            Roda start_tests + start_server"
-	@echo "  make start_tests    Roda os testes (ruff + pytest)"
-	@echo "  make start_server   Sobe o servidor Django"
-	@echo "  make backend        Atalho para start_server"
-	@echo "  make mobile         Sobe só o mobile (Ionic)"
-	@echo "  make clean          Limpa caches e artefatos"
+	@echo "Comandos disponíveis:"
+	@echo "  make start-backend  Instala dependências e sobe o servidor Django"
+	@echo "  make test-backend   Roda o ruff e o pytest no backend"
+	@echo "  make start-mobile   Instala dependências e sobe o app mobile"
+	@echo "  make clean          Limpa caches de ambos os projetos"
 
-setup:
-	@chmod +x backend/start_tests.sh backend/start_server.sh
-	@echo "✅ Scripts prontos para uso."
+start-backend:
+	@python -m venv venv
+	@venv/bin/pip install -r requirements.txt
+	@cd backend && ../venv/bin/python manage.py migrate
+	@echo "Venv criada.\nPara ativar no seu terminal, use: source venv/bin/activate\nPara encerrar, use: deactivate"
 
-all: start_tests start_server
+test-backend:
+	@cd backend && ../venv/bin/python -m ruff check .
+	@cd backend && ../venv/bin/python -m pytest --cov=. --cov-report=term-missing
 
-start_server:
-	@chmod +x backend/start_server.sh
-	@./backend/start_server.sh
+start-mobile:
+	@cd mobile && npm install
+	@cd mobile && npm start # ou 'ng serve', dependendo do seu framework
 
-start_tests:
-	@chmod +x backend/start_tests.sh
-	@./backend/start_tests.sh
-
-backend: start_server
-
-mobile:
-	@cd mobile && ./start.sh
-
-clean-backend:
-	@find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true
-	@find . -type d -name .pytest_cache -exec rm -rf {} + 2>/dev/null || true
-	@echo "✅ Cache do backend limpo."
-
-clean-mobile:
-	@rm -rf mobile/node_modules mobile/www mobile/.angular 2>/dev/null || true
-	@echo "✅ Cache do mobile limpo."
-
-clean: clean-backend clean-mobile
-	@echo "✅ Limpeza completa."
+clean:
+	@echo "Limpando artefatos do backend..."
+	@find . -type d -name "venv" -prune | xargs rm -rf
+	@find . -type d -name "__pycache__" -prune | xargs rm -rf
+	@find . -type d -name ".pytest_cache" -prune | xargs rm -rf
+	@find . -type d -name ".ruff_cache" -prune | xargs rm -rf
+	@find . -type f -name "*.pyc" -delete 2>/dev/null || true
+	@find . -type f -name "db.sqlite3" -delete 2>/dev/null || true
+	@find . -type f -name ".coverage" -delete 2>/dev/null || true
+#	@echo "Limpando artefatos do mobile..."
+#	@find . -type d -name "mobile/node_modules" -prune | xargs rm -rf
+#	@find . -type d -name "mobile/www" -prune | xargs rm -rf
+#	@find . -type d -name "mobile/.angular" -prune | xargs rm -rf

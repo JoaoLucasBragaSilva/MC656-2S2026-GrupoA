@@ -1,6 +1,7 @@
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import redirect, render
+from django.views.decorators.http import require_GET
 
 
 def login_view(request):
@@ -18,8 +19,12 @@ def logout_view(request):
     logout(request)
     return redirect('accounts:home')
 
+@require_GET
 def home(request):
-    return render(request, 'accounts/home.html')
+    context = {
+        'site_name': 'Nome do Projeto',
+    }
+    return render(request, 'accounts/home.html', context)
 
 def cadastro(request):
     return render(request, 'accounts/cadastro.html')

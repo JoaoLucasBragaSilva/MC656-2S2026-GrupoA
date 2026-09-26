@@ -1,6 +1,6 @@
 import pytest
 
-from apuracao.proporcional.quociente import (
+from functions.apuracao.proporcional.quociente import (
     calcular_quociente_eleitoral,
     calcular_quociente_partidario,
 )
@@ -27,7 +27,7 @@ def test_qe_arredondamento_pra_cima():
 def test_qe_vagas_menor_igual_a_zero():
     with pytest.raises(ValueError, match="Numero de vagas deve ser maior que zero"):
         calcular_quociente_eleitoral(1000, 0)
-        
+
     with pytest.raises(ValueError, match="Numero de vagas deve ser maior que zero"):
         calcular_quociente_eleitoral(1000, -5)
 
